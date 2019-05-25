@@ -4,24 +4,19 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour {
     public float speed;
-    private bool hasBeenShootedByPlayer = false;
-    private GameObject shooter;
 
-    public void InitBullet(bool _hasBeenShootedByPlayer, GameObject _shooter)
+    public void InitBullet(string layer)
     {
-        hasBeenShootedByPlayer = _hasBeenShootedByPlayer;
-        shooter = _shooter;
+        gameObject.layer = LayerMask.NameToLayer(layer);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.tag == "Player" && !hasBeenShootedByPlayer)
-            || (collision.gameObject.tag == "Enemy" && hasBeenShootedByPlayer))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<LivingBeing>().Die();
         }
-        if (!collision.gameObject == shooter)
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     private void FixedUpdate()

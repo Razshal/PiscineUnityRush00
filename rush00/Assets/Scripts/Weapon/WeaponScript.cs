@@ -23,8 +23,7 @@ public class WeaponScript : MonoBehaviour {
 
 	private void OnTriggerStay(Collider other)
 	{
-        if ((other.gameObject.tag == "Enemy" && isOwnedByPlayer) 
-            || (other.gameObject.tag == "player" && !isOwnedByPlayer))
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
         {
             canTouchEnemy = true;
             collidingEnemy = other.gameObject;
@@ -47,8 +46,7 @@ public class WeaponScript : MonoBehaviour {
                                                 gameObject.transform.position,
                                                 gameObject.transform.rotation);
                 lastShootedBullet.GetComponent<BulletScript>()
-                                 .hasBeenShootedByPlayer 
-                                 = isOwnedByPlayer;
+                                 .InitBullet(isOwnedByPlayer ? "Player" : "Enemy");
                 ammoNumber--;
                 coolDown = fireRate;
             }
