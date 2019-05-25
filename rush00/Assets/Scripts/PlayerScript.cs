@@ -67,7 +67,7 @@ public class PlayerScript : LivingBeing
         RotateToPos(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
         // Attack !
-        if (Input.GetMouseButtonDown(0) && attachedWeapon)
+        if (Input.GetMouseButton(0) && attachedWeapon)
             weaponScript.Attack();
 
         // Throw weapon

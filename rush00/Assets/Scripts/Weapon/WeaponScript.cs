@@ -6,14 +6,15 @@ public class WeaponScript : MonoBehaviour {
     public GameObject bullet;
     public GameObject groundWeapon;
     private GameObject lastShootedBullet;
+	private GameObject collidingEnemy;
+
     public bool isMeleeWeapon = false;
+	public bool isOwnedByPlayer = false;
+	public bool canTouchEnemy = false;
     public int ammoNumber = 1;
     public float fireRate = 0.5f;
     public string displayName = "Weapon";
-    public bool isOwnedByPlayer = false;
     private float coolDown;
-    public bool canTouchEnemy = false;
-    public GameObject collidingEnemy;
 
     private string LayerName()
     {
