@@ -7,8 +7,9 @@ public class PlayerScript : MonoBehaviour
     public float movementSpeed = 0.2f;
     public bool alive = true;
     public GameObject weapon;
-    public Animator legs;
+    private GameObject weaponContainer;
 	private GameObject bodyContainer;
+    public Animator legs;
     private Vector3 relativeTarget;
     private Vector3 movement;
     private float rotationRadians;
@@ -20,9 +21,22 @@ public class PlayerScript : MonoBehaviour
     }
     public State state = State.STAY;
 
-    void Start()
+    private void OnTriggerStay2D(Collider2D other)
+	{
+        if (Input.GetKeyDown(KeyCode.E) && !weapon && other.gameObject.tag == "Weapon")
+        {
+            Debug.Log("Weapon + keycode");
+            weapon = Instantiate(other.gameObject.GetComponent<WeaponScript>().playerWeapon);
+			weapon.transform.parent = weaponContainer.transform;
+            weapon.transform.position = weaponContainer.transform.position;
+            weapon.transform.rotation = weaponContainer.transform.rotation;
+        }
+	}
+
+	void Start()
     {
         bodyContainer = gameObject.transform.GetChild(0).gameObject;
+        weaponContainer = bodyContainer.transform.Find("WeaponContainer").gameObject;
     }
 
     void FixedUpdate()
@@ -38,7 +52,6 @@ public class PlayerScript : MonoBehaviour
         else
             state = State.STAY;
         // Start appropriate animation
-        legs.SetBool("isMoving", state == State.MOVING);
     }
 
     void Update()
@@ -48,9 +61,14 @@ public class PlayerScript : MonoBehaviour
         rotationRadians = Mathf.Atan2(relativeTarget.y, relativeTarget.x) * Mathf.Rad2Deg - 90;
         bodyContainer.transform.rotation = Quaternion.Euler(0f, 0f, rotationRadians);
 
+        // Animation control
+        legs.SetBool("isMoving", state == State.MOVING);
+
         if (Input.GetMouseButtonDown(0) && weapon)
         {
             Debug.Log("boom");
         }
+
+
     }
 }
