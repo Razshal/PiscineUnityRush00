@@ -5,18 +5,21 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public float movementSpeed = 0.2f;
+    public bool alive = true;
+    public GameObject weapon;
+    public Animator legs;
+	private GameObject bodyContainer;
     private Vector3 relativeTarget;
+    private Vector3 movement;
     private float rotationRadians;
-    private GameObject bodyContainer;
+
     public enum State
     {
         STAY,
-        MOVING,
-        ATTACKING
+        MOVING
     }
     public State state = State.STAY;
 
-    // Use this for initialization
     void Start()
     {
         bodyContainer = gameObject.transform.GetChild(0).gameObject;
@@ -24,14 +27,20 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        gameObject.transform.Translate(
-            new Vector3(Input.GetAxis("Horizontal") * movementSpeed,
-                        Input.GetAxis("Vertical") * movementSpeed,
-                        0)
-        );
+        movement = new Vector3(Input.GetAxis("Horizontal") * movementSpeed,
+                               Input.GetAxis("Vertical") * movementSpeed,
+                               0);
+        gameObject.transform.Translate(movement);
+
+        // Define if player is moving by his translation vector
+        if (!movement.Equals(Vector3.zero))
+            state = State.MOVING;
+        else
+            state = State.STAY;
+        // Start appropriate animation
+        legs.SetBool("isMoving", state == State.MOVING);
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Rotation caclulation
@@ -39,7 +48,9 @@ public class PlayerScript : MonoBehaviour
         rotationRadians = Mathf.Atan2(relativeTarget.y, relativeTarget.x) * Mathf.Rad2Deg - 90;
         bodyContainer.transform.rotation = Quaternion.Euler(0f, 0f, rotationRadians);
 
-        if (!gameObject.GetComponent<Rigidbody2D>().velocity.Equals(Vector2.zero))
-            state = State.MOVING;
+        if (Input.GetMouseButtonDown(0) && weapon)
+        {
+            Debug.Log("boom");
+        }
     }
 }
