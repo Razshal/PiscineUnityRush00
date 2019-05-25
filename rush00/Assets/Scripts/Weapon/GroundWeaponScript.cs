@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponScript : MonoBehaviour {
+public class GroundWeaponScript : MonoBehaviour {
     public GameObject playerWeapon;
 
 	// Use this for initialization

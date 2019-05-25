@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : LivingBeing
 {
     public float movementSpeed = 0.2f;
-    public bool alive = true;
-    public GameObject weapon;
-    private GameObject weaponContainer;
-	private GameObject bodyContainer;
-    public Animator legs;
-    private Vector3 relativeTarget;
-    private Vector3 movement;
-    private float rotationRadians;
 
     public enum State
     {
@@ -25,19 +17,13 @@ public class PlayerScript : MonoBehaviour
 	{
         if (Input.GetKeyDown(KeyCode.E) && !weapon && other.gameObject.tag == "Weapon")
         {
-            Debug.Log("Weapon + keycode");
-            weapon = Instantiate(other.gameObject.GetComponent<WeaponScript>().playerWeapon);
+            weapon = Instantiate(other.gameObject.GetComponent<GroundWeaponScript>().playerWeapon);
 			weapon.transform.parent = weaponContainer.transform;
             weapon.transform.position = weaponContainer.transform.position;
             weapon.transform.rotation = weaponContainer.transform.rotation;
+            Destroy(other.gameObject);
         }
 	}
-
-	void Start()
-    {
-        bodyContainer = gameObject.transform.GetChild(0).gameObject;
-        weaponContainer = bodyContainer.transform.Find("WeaponContainer").gameObject;
-    }
 
     void FixedUpdate()
     {
@@ -51,7 +37,6 @@ public class PlayerScript : MonoBehaviour
             state = State.MOVING;
         else
             state = State.STAY;
-        // Start appropriate animation
     }
 
     void Update()
@@ -65,10 +50,6 @@ public class PlayerScript : MonoBehaviour
         legs.SetBool("isMoving", state == State.MOVING);
 
         if (Input.GetMouseButtonDown(0) && weapon)
-        {
-            Debug.Log("boom");
-        }
-
-
+            weapon.GetComponent<WeaponScript>().Attack(true);
     }
 }

@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4426742439417278}
   - component: {fileID: 212791941337722802}
+  - component: {fileID: 114528609445662468}
   m_Layer: 0
-  m_Name: PlayerWeapon
+  m_Name: PlayerShotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,6 +41,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &114528609445662468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1237029079400758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee30bf63a06b477d8f5afb975809581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  groundWeapon: {fileID: 1569403525595938, guid: 4638366e44c4e40f1bbf5e650ebaa520,
+    type: 2}
+  isMeleeWeapon: 0
+  ammoNumber: 1
 --- !u!212 &212791941337722802
 SpriteRenderer:
   m_ObjectHideFlags: 1
