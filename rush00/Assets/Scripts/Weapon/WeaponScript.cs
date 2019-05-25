@@ -14,9 +14,16 @@ public class WeaponScript : MonoBehaviour {
     public int ammoNumber = 1;
     public float fireRate = 0.5f;
     public string displayName = "Weapon";
+    private AudioSource audioSource;
+    public AudioClip attackSound;
     private float coolDown;
 
-    private string LayerName()
+	private void Start()
+	{
+        audioSource = gameObject.GetComponent<AudioSource>();
+	}
+
+	private string LayerName()
     {
         return isOwnedByPlayer ? "Player" : "Enemy";
     }
@@ -25,6 +32,8 @@ public class WeaponScript : MonoBehaviour {
     {
         if (coolDown <= 0)
         {
+            audioSource.clip = attackSound;
+
             if (!isMeleeWeapon && ammoNumber > 0)
             {
                 lastShootedBullet = Instantiate(bullet,
@@ -33,13 +42,16 @@ public class WeaponScript : MonoBehaviour {
                 lastShootedBullet.GetComponent<BulletScript>()
                                  .InitBullet(LayerName());
                 ammoNumber--;
-                coolDown = fireRate;
+                audioSource.Play();
             }
+
             if (isMeleeWeapon && canTouchEnemy)
             {
                 gameObject.layer = LayerMask.NameToLayer(LayerName());
                 collidingEnemy.GetComponent<LivingBeing>().Die();
+                audioSource.Play();
             }
+            coolDown = fireRate;
         }
     }
 
