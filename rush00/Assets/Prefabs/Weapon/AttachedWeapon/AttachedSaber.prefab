@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 70771227461449112}
   - component: {fileID: 82695592543280708}
   m_Layer: 0
-  m_Name: AttachedKatana
+  m_Name: AttachedSaber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   canTouchEnemy: 0
   ammoNumber: 0
   fireRate: 0.1
-  displayName: Katana
+  displayName: Saber
   attackSound: {fileID: 8300000, guid: 48d68d12751aa44cb87bfa4f2ca98bb6, type: 3}
 --- !u!212 &212529596760697724
 SpriteRenderer:

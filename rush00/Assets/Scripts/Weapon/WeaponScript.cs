@@ -30,7 +30,7 @@ public class WeaponScript : MonoBehaviour {
 
     public void Attack()
     {
-        if (coolDown <= 0)
+        if (coolDown <= 0 || isMeleeWeapon)
         {
             audioSource.clip = attackSound;
 
@@ -49,8 +49,11 @@ public class WeaponScript : MonoBehaviour {
             {
                 gameObject.layer = LayerMask.NameToLayer(LayerName());
                 collidingEnemy.GetComponent<LivingBeing>().Die();
-                audioSource.Play();
             }
+
+            if (isMeleeWeapon)
+                audioSource.Play();
+
             coolDown = fireRate;
         }
     }
