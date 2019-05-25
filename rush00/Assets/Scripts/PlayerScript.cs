@@ -5,55 +5,73 @@ using UnityEngine;
 public class PlayerScript : LivingBeing
 {
     public float movementSpeed = 0.2f;
-
-    public enum State
-    {
-        STAY,
-        MOVING
-    }
-    public State state = State.STAY;
+    private WeaponScript weaponScript;
 
     private void PickupWeapon(GameObject groundWeapon)
     {
-        weapon = Instantiate(groundWeapon.GetComponent<GroundWeaponScript>().playerWeapon);
-        weapon.transform.parent = weaponContainer.transform;
-        weapon.transform.position = weaponContainer.transform.position;
-        weapon.transform.rotation = weaponContainer.transform.rotation;
-        weapon.GetComponent<WeaponScript>().isOwnedByPlayer = true;
+        attachedWeapon = Instantiate(
+            groundWeapon.GetComponent<GroundWeaponScript>().attachedWeapon);
+        attachedWeapon.transform.parent = weaponContainer.transform;
+        attachedWeapon.transform.position = weaponContainer.transform.position;
+        attachedWeapon.transform.rotation = weaponContainer.transform.rotation;
+        weaponScript = attachedWeapon.GetComponent<WeaponScript>();
+        weaponScript.isOwnedByPlayer = true;
         Destroy(groundWeapon);
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-	{
-        if (Input.GetKeyDown(KeyCode.E) && !weapon && other.gameObject.tag == "Weapon")
-            PickupWeapon(other.gameObject);
-	}
-
-    void FixedUpdate()
+    private void ThrowWeapon()
     {
+        Instantiate(weaponScript.groundWeapon,
+                    gameObject.transform.position,
+                    gameObject.transform.rotation)
+            .GetComponent<GroundWeaponScript>()
+            .hasBeenThrown = true;
+        Destroy(attachedWeapon);
+        attachedWeapon = null;
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        // Pickup Weapon
+        if (Input.GetKeyDown(KeyCode.E) && !attachedWeapon && other.gameObject.tag == "Weapon")
+            PickupWeapon(other.gameObject);
+    }
+
+    new void Start()
+    {
+        base.Start();
+        if (attachedWeapon)
+            weaponScript = attachedWeapon.GetComponent<WeaponScript>();
+    }
+
+    new void FixedUpdate()
+    {
+        // Call parent fixed update
+        base.FixedUpdate();
+
+        // Player input
         movement = new Vector3(Input.GetAxis("Horizontal") * movementSpeed,
                                Input.GetAxis("Vertical") * movementSpeed,
                                0);
         gameObject.transform.Translate(movement);
-
-        // Define if player is moving by his translation vector
-        if (!movement.Equals(Vector3.zero))
-            state = State.MOVING;
-        else
-            state = State.STAY;
     }
 
-    void Update()
+    new void Update()
     {
+        // Call parent update
+        base.Update();
+
         // Rotation caclulation
         relativeTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         rotationRadians = Mathf.Atan2(relativeTarget.y, relativeTarget.x) * Mathf.Rad2Deg - 90;
         bodyContainer.transform.rotation = Quaternion.Euler(0f, 0f, rotationRadians);
 
-        // Animation control
-        legs.SetBool("isMoving", state == State.MOVING);
+        // Attack !
+        if (Input.GetMouseButtonDown(0) && attachedWeapon)
+            attachedWeapon.GetComponent<WeaponScript>().Attack();
 
-        if (Input.GetMouseButtonDown(0) && weapon)
-            weapon.GetComponent<WeaponScript>().Attack();
+        // Throw weapon
+        if (Input.GetMouseButtonDown(1) && attachedWeapon)
+            ThrowWeapon();
     }
 }
