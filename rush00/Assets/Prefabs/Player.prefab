@@ -50,13 +50,13 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4278658204149214}
-  - component: {fileID: 114452942501112538}
   - component: {fileID: 50214392604525674}
   - component: {fileID: 61137740420192752}
   - component: {fileID: 58900624994800882}
+  - component: {fileID: 114452942501112538}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

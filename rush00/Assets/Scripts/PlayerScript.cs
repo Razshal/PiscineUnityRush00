@@ -13,16 +13,20 @@ public class PlayerScript : LivingBeing
     }
     public State state = State.STAY;
 
+    private void PickupWeapon(GameObject groundWeapon)
+    {
+        weapon = Instantiate(groundWeapon.GetComponent<GroundWeaponScript>().playerWeapon);
+        weapon.transform.parent = weaponContainer.transform;
+        weapon.transform.position = weaponContainer.transform.position;
+        weapon.transform.rotation = weaponContainer.transform.rotation;
+        weapon.GetComponent<WeaponScript>().isOwnedByPlayer = true;
+        Destroy(groundWeapon);
+    }
+
     private void OnTriggerStay2D(Collider2D other)
 	{
         if (Input.GetKeyDown(KeyCode.E) && !weapon && other.gameObject.tag == "Weapon")
-        {
-            weapon = Instantiate(other.gameObject.GetComponent<GroundWeaponScript>().playerWeapon);
-			weapon.transform.parent = weaponContainer.transform;
-            weapon.transform.position = weaponContainer.transform.position;
-            weapon.transform.rotation = weaponContainer.transform.rotation;
-            Destroy(other.gameObject);
-        }
+            PickupWeapon(other.gameObject);
 	}
 
     void FixedUpdate()
@@ -50,6 +54,6 @@ public class PlayerScript : LivingBeing
         legs.SetBool("isMoving", state == State.MOVING);
 
         if (Input.GetMouseButtonDown(0) && weapon)
-            weapon.GetComponent<WeaponScript>().Attack(true);
+            weapon.GetComponent<WeaponScript>().Attack();
     }
 }

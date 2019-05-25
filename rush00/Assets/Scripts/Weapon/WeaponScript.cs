@@ -9,7 +9,11 @@ public class WeaponScript : MonoBehaviour {
     public bool isMeleeWeapon = false;
     public int ammoNumber = 1;
     public float fireRate = 0.5f;
+    public string displayName = "Weapon";
+    public bool isOwnedByPlayer = false;
     private float coolDown;
+    private bool canTouchEnemy = false;
+    private GameObject collidingEnemy;
 
 	private void Update()
 	{
@@ -17,24 +21,40 @@ public class WeaponScript : MonoBehaviour {
             coolDown -= Time.deltaTime;
 	}
 
-	private void Start()
+	private void OnTriggerStay(Collider other)
 	{
-        
+        if ((other.gameObject.tag == "Enemy" && isOwnedByPlayer) 
+            || (other.gameObject.tag == "player" && !isOwnedByPlayer))
+        {
+            canTouchEnemy = true;
+            collidingEnemy = other.gameObject;
+        }
 	}
 
-	public void Attack(bool hasBeenShootedByPlayer)
+	private void OnTriggerExit(Collider other)
+	{
+        canTouchEnemy = false;
+        collidingEnemy = null;
+	}
+
+	public void Attack()
     {
         if (coolDown <= 0)
         {
             if (!isMeleeWeapon && ammoNumber > 0)
             {
                 lastShootedBullet = Instantiate(bullet,
-                                    gameObject.transform.position,
-                                    gameObject.transform.rotation);
-                lastShootedBullet.GetComponent<BulletScript>().hasBeenShootedByPlayer
-                                 = hasBeenShootedByPlayer;
+                                                gameObject.transform.position,
+                                                gameObject.transform.rotation);
+                lastShootedBullet.GetComponent<BulletScript>()
+                                 .hasBeenShootedByPlayer 
+                                 = isOwnedByPlayer;
                 ammoNumber--;
                 coolDown = fireRate;
+            }
+            if (isMeleeWeapon && canTouchEnemy)
+            {
+                collidingEnemy.GetComponent<LivingBeing>().Die();
             }
         }
     }

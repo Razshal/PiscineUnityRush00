@@ -22,7 +22,7 @@ public class LivingBeing : MonoBehaviour {
 
     public void Die()
     {
-        Debug.Log("die");
+        Debug.Log(name + " dies");
         alive = false;
     }
 
