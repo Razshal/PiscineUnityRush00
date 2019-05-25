@@ -10,7 +10,6 @@ public class LivingBeing : MonoBehaviour {
 	public float movementSpeed = 0.2f;
     protected GameObject weaponContainer;
     protected GameObject bodyContainer;
-    protected Vector3 relativeTarget;
     protected Vector3 movement;
     protected float rotationRadians;
 
@@ -26,6 +25,14 @@ public class LivingBeing : MonoBehaviour {
         Debug.Log(name + " dies");
         alive = false;
         Destroy(gameObject);
+    }
+
+    // Rotation caclulation (look at this pos trough Z axis)
+    public void RotateToPos(Vector3 pos)
+    {
+        pos -= transform.position;
+        rotationRadians = Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg - 90;
+        bodyContainer.transform.rotation = Quaternion.Euler(0f, 0f, rotationRadians);
     }
 
     protected void Start()

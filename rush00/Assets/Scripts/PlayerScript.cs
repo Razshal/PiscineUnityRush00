@@ -63,10 +63,8 @@ public class PlayerScript : LivingBeing
         // Call parent update
         base.Update();
 
-        // Rotation caclulation
-        relativeTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        rotationRadians = Mathf.Atan2(relativeTarget.y, relativeTarget.x) * Mathf.Rad2Deg - 90;
-        bodyContainer.transform.rotation = Quaternion.Euler(0f, 0f, rotationRadians);
+        // Look at the mouse direction
+        RotateToPos(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
         // Attack !
         if (Input.GetMouseButtonDown(0) && attachedWeapon)

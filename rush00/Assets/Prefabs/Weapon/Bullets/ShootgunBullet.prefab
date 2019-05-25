@@ -119,7 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.2
-  hasBeenShootedByPlayer: 0
 --- !u!212 &212570814321615850
 SpriteRenderer:
   m_ObjectHideFlags: 1
