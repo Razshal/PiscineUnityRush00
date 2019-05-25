@@ -56,7 +56,8 @@ MonoBehaviour:
   groundWeapon: {fileID: 1569403525595938, guid: 4638366e44c4e40f1bbf5e650ebaa520,
     type: 2}
   isMeleeWeapon: 0
-  ammoNumber: 1
+  ammoNumber: 24
+  fireRate: 0.5
 --- !u!212 &212791941337722802
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -8,13 +8,34 @@ public class WeaponScript : MonoBehaviour {
     private GameObject lastShootedBullet;
     public bool isMeleeWeapon = false;
     public int ammoNumber = 1;
+    public float fireRate = 0.5f;
+    private float coolDown;
 
-    public void Attack(bool hasBeenShootedByPlayer)
+	private void Update()
+	{
+        if (coolDown > 0)
+            coolDown -= Time.deltaTime;
+	}
+
+	private void Start()
+	{
+        
+	}
+
+	public void Attack(bool hasBeenShootedByPlayer)
     {
-        lastShootedBullet = Instantiate(bullet,
-                                        gameObject.transform.position,
-                                        gameObject.transform.rotation);
-        lastShootedBullet.GetComponent<BulletScript>().hasBeenShootedByPlayer 
-                         = hasBeenShootedByPlayer;
+        if (coolDown <= 0)
+        {
+            if (!isMeleeWeapon && ammoNumber > 0)
+            {
+                lastShootedBullet = Instantiate(bullet,
+                                    gameObject.transform.position,
+                                    gameObject.transform.rotation);
+                lastShootedBullet.GetComponent<BulletScript>().hasBeenShootedByPlayer
+                                 = hasBeenShootedByPlayer;
+                ammoNumber--;
+                coolDown = fireRate;
+            }
+        }
     }
 }
