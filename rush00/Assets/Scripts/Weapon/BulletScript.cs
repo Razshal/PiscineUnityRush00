@@ -16,6 +16,6 @@ public class BulletScript : MonoBehaviour {
 
 	private void FixedUpdate()
 	{
-        gameObject.transform.Translate(Vector3.up * speed);
+        gameObject.transform.Translate(Vector3.down * speed);
 	}
 }

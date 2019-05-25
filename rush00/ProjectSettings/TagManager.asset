@@ -39,6 +39,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floor
+    uniqueID: 107566139
+    locked: 0
+  - name: Weapon
+    uniqueID: 3828911
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ammo
+    uniqueID: 3487164991
+    locked: 0
+  - name: Entity
+    uniqueID: 3287848233
+    locked: 0
+  - name: Ui
+    uniqueID: 2569981013
     locked: 0

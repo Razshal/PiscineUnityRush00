@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee30bf63a06b477d8f5afb975809581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  bullet: {fileID: 1066116559050230, guid: 82ea67f5e62f94455bff29a907465b3e, type: 2}
   groundWeapon: {fileID: 1569403525595938, guid: 4638366e44c4e40f1bbf5e650ebaa520,
     type: 2}
   isMeleeWeapon: 0

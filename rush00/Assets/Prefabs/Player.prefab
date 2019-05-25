@@ -27,6 +27,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1511869743047510
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4334199012916574}
+  m_Layer: 0
+  m_Name: WeaponContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1557517723541686
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +136,19 @@ Transform:
   m_Father: {fileID: 4499014004112816}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
+--- !u!4 &4334199012916574
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1511869743047510}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0.16, y: 0.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4499014004112816}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!4 &4499014004112816
 Transform:
   m_ObjectHideFlags: 1
@@ -134,6 +162,7 @@ Transform:
   - {fileID: 4619143558467154}
   - {fileID: 4596170905240690}
   - {fileID: 4322658947980920}
+  - {fileID: 4334199012916574}
   m_Father: {fileID: 4278658204149214}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -251,10 +280,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb260568595ea481f95630a1948760a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0.2
   alive: 1
   weapon: {fileID: 0}
   legs: {fileID: 95983360920063868}
+  movementSpeed: 0.2
   state: 0
 --- !u!212 &212509720518990374
 SpriteRenderer:
