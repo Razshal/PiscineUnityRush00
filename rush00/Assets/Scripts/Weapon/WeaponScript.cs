@@ -12,31 +12,15 @@ public class WeaponScript : MonoBehaviour {
     public string displayName = "Weapon";
     public bool isOwnedByPlayer = false;
     private float coolDown;
-    private bool canTouchEnemy = false;
-    private GameObject collidingEnemy;
+    public bool canTouchEnemy = false;
+    public GameObject collidingEnemy;
 
-	private void Update()
-	{
-        if (coolDown > 0)
-            coolDown -= Time.deltaTime;
-	}
+    private string LayerName()
+    {
+        return isOwnedByPlayer ? "Player" : "Enemy";
+    }
 
-	private void OnTriggerStay(Collider other)
-	{
-        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
-        {
-            canTouchEnemy = true;
-            collidingEnemy = other.gameObject;
-        }
-	}
-
-	private void OnTriggerExit(Collider other)
-	{
-        canTouchEnemy = false;
-        collidingEnemy = null;
-	}
-
-	public void Attack()
+    public void Attack()
     {
         if (coolDown <= 0)
         {
@@ -46,14 +30,36 @@ public class WeaponScript : MonoBehaviour {
                                                 gameObject.transform.position,
                                                 gameObject.transform.rotation);
                 lastShootedBullet.GetComponent<BulletScript>()
-                                 .InitBullet(isOwnedByPlayer ? "Player" : "Enemy");
+                                 .InitBullet(LayerName());
                 ammoNumber--;
                 coolDown = fireRate;
             }
             if (isMeleeWeapon && canTouchEnemy)
             {
+                gameObject.layer = LayerMask.NameToLayer(LayerName());
                 collidingEnemy.GetComponent<LivingBeing>().Die();
             }
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
+        {
+            canTouchEnemy = true;
+            collidingEnemy = other.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        canTouchEnemy = false;
+        collidingEnemy = null;
+    }
+
+    private void Update()
+    {
+        if (coolDown > 0)
+            coolDown -= Time.deltaTime;
     }
 }

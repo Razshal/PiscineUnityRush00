@@ -7,6 +7,7 @@ public class LivingBeing : MonoBehaviour {
     public bool alive = true;
     public GameObject attachedWeapon;
     public Animator legs;
+	public float movementSpeed = 0.2f;
     protected GameObject weaponContainer;
     protected GameObject bodyContainer;
     protected Vector3 relativeTarget;
@@ -24,6 +25,7 @@ public class LivingBeing : MonoBehaviour {
     {
         Debug.Log(name + " dies");
         alive = false;
+        Destroy(gameObject);
     }
 
     protected void Start()

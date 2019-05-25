@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerScript : LivingBeing
 {
-    public float movementSpeed = 0.2f;
     private WeaponScript weaponScript;
 
     private void PickupWeapon(GameObject groundWeapon)
@@ -22,12 +21,13 @@ public class PlayerScript : LivingBeing
     private void ThrowWeapon()
     {
         Instantiate(weaponScript.groundWeapon,
-                    gameObject.transform.position,
-                    gameObject.transform.rotation)
+                    attachedWeapon.transform.position,
+                    attachedWeapon.transform.rotation)
             .GetComponent<GroundWeaponScript>()
             .hasBeenThrown = true;
         Destroy(attachedWeapon);
         attachedWeapon = null;
+        weaponScript = null;
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -39,7 +39,9 @@ public class PlayerScript : LivingBeing
 
     new void Start()
     {
+        // Call parent start
         base.Start();
+
         if (attachedWeapon)
             weaponScript = attachedWeapon.GetComponent<WeaponScript>();
     }
@@ -68,7 +70,7 @@ public class PlayerScript : LivingBeing
 
         // Attack !
         if (Input.GetMouseButtonDown(0) && attachedWeapon)
-            attachedWeapon.GetComponent<WeaponScript>().Attack();
+            weaponScript.Attack();
 
         // Throw weapon
         if (Input.GetMouseButtonDown(1) && attachedWeapon)

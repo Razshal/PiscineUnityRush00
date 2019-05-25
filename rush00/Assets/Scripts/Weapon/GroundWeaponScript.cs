@@ -17,7 +17,7 @@ public class GroundWeaponScript : MonoBehaviour {
 	{
         if (hasBeenThrown)
         {
-            rigidbody2D.AddForce(new Vector2(0, throwForce));
+            rigidbody2D.AddForce(gameObject.transform.up * -throwForce);
             hasBeenThrown = false;
         }
         if (!rigidbody2D.velocity.Equals(Vector2.zero))
