@@ -15,7 +15,9 @@ public class BulletScript : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))
             collision.gameObject.GetComponent<LivingBeing>().Die();
-        Destroy(gameObject, collision.gameObject.CompareTag("Door") ? 0.1f : 0);
+        
+        if (!collision.gameObject.CompareTag("Bullets"))
+            Destroy(gameObject, collision.gameObject.CompareTag("Door") ? 0.05f : 0);
     }
 
     private void FixedUpdate()

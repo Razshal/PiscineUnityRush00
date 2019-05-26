@@ -6,7 +6,6 @@ using UnityEngine;
 public class LoadScene : MonoBehaviour {
 	public void load (string name) 
     {
-        Debug.Log("loading " + name);
         SceneManager.LoadScene(name);
 	}
 

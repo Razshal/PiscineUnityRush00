@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212762177337597046}
   - component: {fileID: 114311092059011238}
   - component: {fileID: 82302487021456824}
+  - component: {fileID: 58573052695494024}
   m_Layer: 0
   m_Name: AttachedSubMachineGun
   m_TagString: Untagged
@@ -42,6 +43,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!58 &58573052695494024
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347637887101842}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!82 &82302487021456824
 AudioSource:
   m_ObjectHideFlags: 1
@@ -136,6 +152,7 @@ MonoBehaviour:
   bullet: {fileID: 1496291169769236, guid: 08d39308e9be14e2b86ba6adb9824581, type: 2}
   groundWeapon: {fileID: 1755574208427400, guid: 8b68ff0bdb0a64de9be32d5c9ef05075,
     type: 2}
+  listeningEnemies: []
   isUnlimited: 0
   isMeleeWeapon: 0
   isOwnedByPlayer: 0

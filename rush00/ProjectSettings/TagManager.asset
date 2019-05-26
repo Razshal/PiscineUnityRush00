@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Door
   - CheckPoint
+  - Bullets
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Player
   - Enemy
   - Door
-  - 
-  - 
+  - PlayerBullets
+  - EnemyBullets
   - 
   - 
   - 
@@ -45,6 +46,9 @@ TagManager:
   m_SortingLayers:
   - name: Floor
     uniqueID: 107566139
+    locked: 0
+  - name: Other
+    uniqueID: 1606781171
     locked: 0
   - name: Weapon
     uniqueID: 3828911

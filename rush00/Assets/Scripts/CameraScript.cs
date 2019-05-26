@@ -33,7 +33,7 @@ public class CameraScript : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         if (musics.Length > 0)
         {
-            actualMusic = musics[Random.Range(0, musics.Length - 1)];
+            actualMusic = musics[Random.Range(0, musics.Length)];
             PlaySound(actualMusic);
         }
     }

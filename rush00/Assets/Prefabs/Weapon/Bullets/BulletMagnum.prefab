@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 50316367747824936}
   - component: {fileID: 58062796969944544}
   - component: {fileID: 114169986680904038}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BulletMagnum
-  m_TagString: Untagged
+  m_TagString: Bullets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4130423688933676}
   - component: {fileID: 212274470527589296}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &58062796969944544
 CircleCollider2D:
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2f6d32c9645414baf5648157a011aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 0.4
 --- !u!212 &212274470527589296
 SpriteRenderer:
   m_ObjectHideFlags: 1

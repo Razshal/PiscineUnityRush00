@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212512227557088672}
   - component: {fileID: 114389166640940906}
   - component: {fileID: 82536351947367546}
+  - component: {fileID: 58663393904824280}
   m_Layer: 0
   m_Name: AttachedMagnum
   m_TagString: Untagged
@@ -42,6 +43,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!58 &58663393904824280
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1784542152705128}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!82 &82536351947367546
 AudioSource:
   m_ObjectHideFlags: 1
@@ -136,6 +152,7 @@ MonoBehaviour:
   bullet: {fileID: 1925379010471088, guid: 3b971ae3a98f04df386252e5acadfd0b, type: 2}
   groundWeapon: {fileID: 1507460994923126, guid: 475c4e03d9f8543c7a19a7f649504309,
     type: 2}
+  listeningEnemies: []
   isUnlimited: 0
   isMeleeWeapon: 0
   isOwnedByPlayer: 0

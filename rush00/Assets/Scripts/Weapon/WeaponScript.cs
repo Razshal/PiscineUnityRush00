@@ -25,6 +25,7 @@ public class WeaponScript : MonoBehaviour {
 
 	private void Start()
 	{
+        gameObject.layer = LayerMask.NameToLayer(LayerName());
         audioSource = gameObject.GetComponent<AudioSource>();
         if (isMeleeWeapon)
             wooshSprite = transform.GetChild(0).gameObject;
@@ -32,7 +33,7 @@ public class WeaponScript : MonoBehaviour {
 
 	private string LayerName()
     {
-        return isOwnedByPlayer ? "Player" : "Enemy";
+        return isOwnedByPlayer ? "PlayerBullets" : "EnemyBullets";
     }
 
     public void Attack()
@@ -68,7 +69,6 @@ public class WeaponScript : MonoBehaviour {
 
             if (isMeleeWeapon && canTouchEnemy)
             {
-                gameObject.layer = LayerMask.NameToLayer(LayerName());
                 collidingEnemy.GetComponent<LivingBeing>().Die();
             }
 

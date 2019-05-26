@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 50135730317815816}
   - component: {fileID: 58970093089884534}
   - component: {fileID: 114200512668686098}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BulletShootgun
-  m_TagString: Untagged
+  m_TagString: Bullets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4445837790072452}
   - component: {fileID: 212570814321615850}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &58970093089884534
 CircleCollider2D:

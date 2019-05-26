@@ -18,8 +18,6 @@ public class LivingBeing : MonoBehaviour {
     protected float rotationRadians;
     public static int enemyCount = 0;
     new public Rigidbody2D rigidbody2D;
-    public bool deathAnimation;
-    public float throwForce = 1000;
 
     public enum State
     {
@@ -42,7 +40,6 @@ public class LivingBeing : MonoBehaviour {
         if (alive)
         {
             alive = false;
-            deathAnimation = true;
             PlaySound(deathSound);
             if (gameObject.CompareTag("Player"))
             {
@@ -91,18 +88,9 @@ public class LivingBeing : MonoBehaviour {
             state = State.MOVING;
         else
             state = State.STAY;
-
-        if (deathAnimation)
-        {
-            rigidbody2D.AddForce(gameObject.transform.up * -throwForce);
-            deathAnimation = false;
-        }
-
-        if (!alive && !rigidbody2D.velocity.Equals(Vector2.zero))
-        {
-            rigidbody2D.velocity *= 0.8f;
-            bodyContainer.transform.Rotate(new Vector3(0, 0, 10 * rigidbody2D.velocity.y));
-        }
+        
+        if (!alive)
+            bodyContainer.transform.Rotate(new Vector3(0, 0, 10));
     }
 
     protected void Update()

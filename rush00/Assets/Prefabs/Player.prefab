@@ -367,8 +367,13 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 61f34fee662fe406994204e8723ee10c, type: 3}
   alive: 1
   movementSpeed: 0.2
+  rigidbody2D: {fileID: 0}
+  deathAnimation: 0
+  throwForce: 5000
   state: 0
+  weaponScript: {fileID: 0}
   pickupWeaponSound: {fileID: 8300000, guid: bd5112458d23d48faa52fe82499275ed, type: 3}
+  winMenu: {fileID: 1119844512588970, guid: 3beb4d7c0f8b14f83860e0fe7b602918, type: 2}
 --- !u!212 &212509720518990374
 SpriteRenderer:
   m_ObjectHideFlags: 1
