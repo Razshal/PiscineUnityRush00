@@ -8,6 +8,11 @@ public class PlayerScript : LivingBeing
     private GameObject lastCollidedWeapon;
     public AudioClip pickupWeaponSound;
 
+    public static GameObject Player()
+    {
+        return GameObject.FindWithTag("Player");
+    }
+
     private void PickupWeapon(GameObject groundWeapon)
     {
         attachedWeapon = Instantiate(

@@ -7,8 +7,37 @@ public class CameraScript : MonoBehaviour
     public GameObject player;
     public Texture2D texture;
     public AudioClip[] musics;
+    public AudioClip looseSound;
+    public AudioClip winSound;
     private AudioSource audioSource;
     private AudioClip actualMusic;
+
+    public void ChangeSoundTrack(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
+    protected void PlaySound(AudioClip clip)
+    {
+        if (audioSource)
+        {
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+    }
+
+    public void LooseSound()
+    {
+        audioSource.loop = false;
+        PlaySound(looseSound);
+    }
+
+    public void WinSound()
+    {
+        audioSource.loop = false;
+        PlaySound(winSound);
+    }
 
     private void Start()
     {
@@ -17,9 +46,8 @@ public class CameraScript : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         if (musics.Length > 0)
         {
-			actualMusic = musics[Random.Range(0, musics.Length - 1)];
-            audioSource.clip = actualMusic;
-            audioSource.Play();
+            actualMusic = musics[Random.Range(0, musics.Length - 1)];
+            PlaySound(actualMusic);
         }
     }
 
