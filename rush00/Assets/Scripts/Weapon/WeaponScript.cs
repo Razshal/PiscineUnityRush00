@@ -8,6 +8,7 @@ public class WeaponScript : MonoBehaviour {
     private GameObject lastShootedBullet;
 	private GameObject collidingEnemy;
 
+    public bool isUnlimited = false;
     public bool isMeleeWeapon = false;
 	public bool isOwnedByPlayer = false;
 	public bool canTouchEnemy = false;
@@ -34,14 +35,15 @@ public class WeaponScript : MonoBehaviour {
         {
             audioSource.clip = attackSound;
 
-            if (!isMeleeWeapon && ammoNumber > 0)
+            if (!isMeleeWeapon && (ammoNumber > 0 || isUnlimited))
             {
                 lastShootedBullet = Instantiate(bullet,
                                                 gameObject.transform.position,
                                                 gameObject.transform.rotation);
                 lastShootedBullet.GetComponent<BulletScript>()
                                  .InitBullet(LayerName());
-                ammoNumber--;
+                if (!isUnlimited)
+                    ammoNumber--;
                 audioSource.Play();
             }
 

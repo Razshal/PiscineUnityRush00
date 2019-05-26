@@ -40,22 +40,27 @@ public class PlayerScript : LivingBeing
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-        if (!attachedWeapon && collision.gameObject.tag == "Weapon")
+        if (IsPickableWeapon(collision.gameObject))
             lastCollidedWeapon = collision.gameObject;
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-        if (!attachedWeapon && collision.gameObject.tag == "Weapon" 
+        if (IsPickableWeapon(collision.gameObject) 
             && collision.gameObject == lastCollidedWeapon)
             lastCollidedWeapon = null;
 	}
 
-	private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         // Pickup Weapon
-        if (!attachedWeapon && other.gameObject.tag == "Weapon")
-            lastCollidedWeapon = other.gameObject;
+        if (IsPickableWeapon(collision.gameObject))
+            lastCollidedWeapon = collision.gameObject;
+    }
+
+    public void Win()
+    {
+        Debug.Log("Player win");
     }
 
 	new void Start()

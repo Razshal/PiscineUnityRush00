@@ -5,6 +5,7 @@ using UnityEngine;
 public class LivingBeing : MonoBehaviour {
 
 	public GameObject attachedWeapon;
+    public GameObject looseMenu;
 	protected GameObject weaponContainer;
 	protected GameObject bodyContainer;
     public Animator legs;
@@ -34,9 +35,20 @@ public class LivingBeing : MonoBehaviour {
 
     public void Die()
     {
-        Debug.Log(name + " dies");
-        alive = false;
-        Destroy(gameObject);
+        if (alive)
+        {
+            Debug.Log(name + " dies");
+            alive = false;
+            PlaySound(deathSound);
+            if (gameObject.CompareTag("Player"))
+            {
+				GameObject instantiatedMenu;
+
+                instantiatedMenu = Instantiate(looseMenu);
+                instantiatedMenu.GetComponent<Canvas>().worldCamera = Camera.main;
+                instantiatedMenu.SetActive(true);
+            }
+        }
     }
 
     // Rotation caclulation (look at this pos trough Z axis)
