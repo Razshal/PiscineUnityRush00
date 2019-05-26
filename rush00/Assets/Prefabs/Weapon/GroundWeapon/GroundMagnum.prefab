@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 50071562922340482}
   - component: {fileID: 58650042247490346}
   - component: {fileID: 114842256381790512}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundMagnum
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4221738989933224}
   - component: {fileID: 212117190567260670}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpriteContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
     type: 2}
   hasBeenThrown: 0
   throwForce: 1000
+  previousAmmos: -1
 --- !u!212 &212117190567260670
 SpriteRenderer:
   m_ObjectHideFlags: 1

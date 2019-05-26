@@ -6,7 +6,8 @@ using UnityEngine;
 public class LoadScene : MonoBehaviour {
 	public void load (string name) 
     {
-		SceneManager.LoadScene(name);
+        Debug.Log("loading " + name);
+        SceneManager.LoadScene(name);
 	}
 
     public void ReloadScene()

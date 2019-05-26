@@ -11,6 +11,7 @@ public class LivingBeing : MonoBehaviour {
     public Animator legs;
     protected AudioSource audioSource;
     public AudioClip deathSound;
+    protected GameObject player;
     protected Vector3 movement;
 	public bool alive = true;
 	public float movementSpeed = 0.2f;
@@ -49,8 +50,15 @@ public class LivingBeing : MonoBehaviour {
                 instantiatedMenu.SetActive(true);
                 GameObject.Find("HUD").SetActive(false);
             }
-            else
+            else 
+            {
                 enemyCount--;
+                player.GetComponent<PlayerScript>()
+                      .weaponScript
+                      .listeningEnemies
+                      .Remove(gameObject);
+                Destroy(gameObject, 5);
+            }
 
             if (enemyCount <= 0)
                 PlayerScript.Player().GetComponent<PlayerScript>().Win();
@@ -67,6 +75,7 @@ public class LivingBeing : MonoBehaviour {
 
     protected void Start()
     {
+        player = PlayerScript.Player();
         bodyContainer = gameObject.transform.GetChild(0).gameObject;
         weaponContainer = bodyContainer.transform.Find("WeaponContainer").gameObject;
         audioSource = gameObject.GetComponent<AudioSource>();

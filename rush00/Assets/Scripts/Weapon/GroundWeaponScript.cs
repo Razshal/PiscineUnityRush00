@@ -6,6 +6,7 @@ public class GroundWeaponScript : MonoBehaviour {
     public GameObject attachedWeapon;
     public bool hasBeenThrown = false;
     public float throwForce = 1000;
+    public int previousAmmos = -1;
     new private Rigidbody2D rigidbody2D;
     private GameObject spriteContainer;
 

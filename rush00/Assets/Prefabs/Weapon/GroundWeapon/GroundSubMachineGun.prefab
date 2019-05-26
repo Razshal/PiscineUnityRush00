@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4561635797336942}
   - component: {fileID: 212143807578640808}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpriteContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 50387394908921170}
   - component: {fileID: 58941722954232066}
   - component: {fileID: 114515759995974750}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundSubMachineGun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
     type: 2}
   hasBeenThrown: 0
   throwForce: 1000
+  previousAmmos: -1
 --- !u!212 &212143807578640808
 SpriteRenderer:
   m_ObjectHideFlags: 1

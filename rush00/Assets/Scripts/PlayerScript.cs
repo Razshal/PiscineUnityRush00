@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerScript : LivingBeing
 {
-    private WeaponScript weaponScript;
+    public WeaponScript weaponScript;
     private GameObject lastCollidedWeapon;
+    private GroundWeaponScript groundWeaponScript;
     public AudioClip pickupWeaponSound;
     public GameObject winMenu;
 
@@ -17,24 +18,32 @@ public class PlayerScript : LivingBeing
 
     private void PickupWeapon(GameObject groundWeapon)
     {
-        attachedWeapon = Instantiate(
-            groundWeapon.GetComponent<GroundWeaponScript>().attachedWeapon);
-        attachedWeapon.transform.parent = weaponContainer.transform;
+        groundWeaponScript = groundWeapon.GetComponent<GroundWeaponScript>();
+
+        attachedWeapon = Instantiate(groundWeaponScript.attachedWeapon, weaponContainer.transform);
         attachedWeapon.transform.position = weaponContainer.transform.position;
         attachedWeapon.transform.rotation = weaponContainer.transform.rotation;
+
         weaponScript = attachedWeapon.GetComponent<WeaponScript>();
         weaponScript.isOwnedByPlayer = true;
+
+        // Check if the player already used some bullets
+        weaponScript.ammoNumber = groundWeaponScript.previousAmmos > -1 ? 
+            groundWeaponScript.previousAmmos 
+            : weaponScript.ammoNumber;
+        
         Destroy(groundWeapon);
         PlaySound(pickupWeaponSound);
     }
 
     private void ThrowWeapon()
     {
-        GameObject tempweapon = Instantiate(weaponScript.groundWeapon,
-                    attachedWeapon.transform.position,
-                                             attachedWeapon.transform.rotation);
-        tempweapon.GetComponent<GroundWeaponScript>()
-            .hasBeenThrown = true;
+        groundWeaponScript = Instantiate(weaponScript.groundWeapon,
+                                         attachedWeapon.transform.position,
+                                         attachedWeapon.transform.rotation)
+                             .GetComponent<GroundWeaponScript>();
+        groundWeaponScript.hasBeenThrown = true;
+        groundWeaponScript.previousAmmos = weaponScript.ammoNumber;
         Destroy(attachedWeapon);
         attachedWeapon = null;
         weaponScript = null;
@@ -75,6 +84,7 @@ public class PlayerScript : LivingBeing
             instantiatedMenu.GetComponent<Canvas>().worldCamera = Camera.main;
             instantiatedMenu.SetActive(true);
             GameObject.Find("HUD").SetActive(false);
+            alive = false;
         }
     }
 

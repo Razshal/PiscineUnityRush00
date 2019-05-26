@@ -6,7 +6,9 @@ public class WeaponScript : MonoBehaviour {
     public GameObject bullet;
     public GameObject groundWeapon;
     private GameObject lastShootedBullet;
-	private GameObject collidingEnemy;
+    private GameObject collidingEnemy;
+    public List<GameObject> listeningEnemies = new List<GameObject>();
+
 
     public bool isUnlimited = false;
     public bool isMeleeWeapon = false;
@@ -34,17 +36,30 @@ public class WeaponScript : MonoBehaviour {
         if (coolDown <= 0 || isMeleeWeapon)
         {
             audioSource.clip = attackSound;
+            coolDown = fireRate;
 
             if (!isMeleeWeapon && (ammoNumber > 0 || isUnlimited))
             {
+                // Create Bullets
                 lastShootedBullet = Instantiate(bullet,
                                                 gameObject.transform.position,
                                                 gameObject.transform.rotation);
-                lastShootedBullet.GetComponent<BulletScript>()
-                                 .InitBullet(LayerName());
+                lastShootedBullet.GetComponent<BulletScript>().InitBullet(LayerName());
+
+                // Decrase weapon
                 if (!isUnlimited)
                     ammoNumber--;
-                audioSource.Play();
+
+                // Pow !
+				audioSource.Play();
+
+                // Warn Enemies in a radius
+                if (listeningEnemies.Count > 0)
+                {
+                    foreach (GameObject enemy in listeningEnemies)
+                        enemy.GetComponent<EnemyScript>().Sight.PlayerDetected = true;
+                }
+
             }
 
             if (isMeleeWeapon && canTouchEnemy)
@@ -56,11 +71,18 @@ public class WeaponScript : MonoBehaviour {
             if (isMeleeWeapon)
                 audioSource.Play();
 
-            coolDown = fireRate;
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+        if (!isMeleeWeapon && collision.gameObject.CompareTag("Enemy"))
+        {
+            listeningEnemies.Add(collision.gameObject);
+        }
+	}
+
+	private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
         {
@@ -73,6 +95,10 @@ public class WeaponScript : MonoBehaviour {
     {
         canTouchEnemy = false;
         collidingEnemy = null;
+        if (!isMeleeWeapon && other.gameObject.CompareTag("Enemy"))
+        {
+            listeningEnemies.Remove(other.gameObject);
+        }
     }
 
     private void Update()

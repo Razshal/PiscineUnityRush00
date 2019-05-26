@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4464922717353134}
   - component: {fileID: 212754195043833476}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 50631262492773422}
   - component: {fileID: 58723478118879082}
   - component: {fileID: 114405434216486102}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundShotgun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
     type: 2}
   hasBeenThrown: 0
   throwForce: 1000
+  previousAmmos: -1
 --- !u!212 &212754195043833476
 SpriteRenderer:
   m_ObjectHideFlags: 1
