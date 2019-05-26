@@ -69,11 +69,6 @@ public class LivingBeing : MonoBehaviour {
 
     protected void FixedUpdate()
     {
-        if (!movement.Equals(Vector3.zero))
-            state = State.MOVING;
-        else
-            state = State.STAY;
-
         // Define if entity is moving by his translation vector
         if (!movement.Equals(Vector3.zero))
             state = State.MOVING;

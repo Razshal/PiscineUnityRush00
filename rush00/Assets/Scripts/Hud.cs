@@ -16,8 +16,9 @@ public class Hud : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (player.attachedWeapon)	{
-			WeaponScript Weapon = player.attachedWeapon.GetComponent<WeaponScript>();
-			ammo.text = (Weapon.isMeleeWeapon) ? "∞" : Weapon.ammoNumber.ToString();
+            WeaponScript weaponScript = player.attachedWeapon.GetComponent<WeaponScript>();
+			ammo.text = (weaponScript.isMeleeWeapon) ? "∞" : weaponScript.ammoNumber.ToString();
+            weapon.text = weaponScript.displayName;
 		}
 		else {
 			ammo.text = "-";

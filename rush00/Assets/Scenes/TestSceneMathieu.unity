@@ -304,6 +304,66 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1251573768}
+    - target: {fileID: 224730189997228010, guid: 5841ab283ec2d455380a595976e86803,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -159.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224730189997228010, guid: 5841ab283ec2d455380a595976e86803,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -384.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224730189997228010, guid: 5841ab283ec2d455380a595976e86803,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 202.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 224730189997228010, guid: 5841ab283ec2d455380a595976e86803,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -483.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224334272449149744, guid: 5841ab283ec2d455380a595976e86803,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -141.21901
+      objectReference: {fileID: 0}
+    - target: {fileID: 224334272449149744, guid: 5841ab283ec2d455380a595976e86803,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -729.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 224334272449149744, guid: 5841ab283ec2d455380a595976e86803,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -376.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 224334272449149744, guid: 5841ab283ec2d455380a595976e86803,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 1628.8292
+      objectReference: {fileID: 0}
+    - target: {fileID: 224334272449149744, guid: 5841ab283ec2d455380a595976e86803,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: -1.2854236
+      objectReference: {fileID: 0}
+    - target: {fileID: 224334272449149744, guid: 5841ab283ec2d455380a595976e86803,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.28112367
+      objectReference: {fileID: 0}
+    - target: {fileID: 114284632643527920, guid: 5841ab283ec2d455380a595976e86803,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 114284632643527920, guid: 5841ab283ec2d455380a595976e86803,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5841ab283ec2d455380a595976e86803, type: 2}
   m_IsPrefabParent: 0
@@ -894,6 +954,7 @@ MonoBehaviour:
   alive: 1
   movementSpeed: 0.2
   state: 0
+  Sight: {fileID: 0}
 --- !u!1001 &1508538580
 Prefab:
   m_ObjectHideFlags: 0

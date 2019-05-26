@@ -136,12 +136,13 @@ MonoBehaviour:
   bullet: {fileID: 1496291169769236, guid: 08d39308e9be14e2b86ba6adb9824581, type: 2}
   groundWeapon: {fileID: 1755574208427400, guid: 8b68ff0bdb0a64de9be32d5c9ef05075,
     type: 2}
+  isUnlimited: 0
   isMeleeWeapon: 0
   isOwnedByPlayer: 0
   canTouchEnemy: 0
   ammoNumber: 100
   fireRate: 0.1
-  displayName: Weapon
+  displayName: Sub machine gun
   attackSound: {fileID: 8300000, guid: 2a66bd67ce9c148d9948c5b4a1e85970, type: 3}
 --- !u!212 &212762177337597046
 SpriteRenderer:

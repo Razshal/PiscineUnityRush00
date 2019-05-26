@@ -136,12 +136,13 @@ MonoBehaviour:
   bullet: {fileID: 1066116559050230, guid: 82ea67f5e62f94455bff29a907465b3e, type: 2}
   groundWeapon: {fileID: 1569403525595938, guid: 4638366e44c4e40f1bbf5e650ebaa520,
     type: 2}
+  isUnlimited: 0
   isMeleeWeapon: 0
   isOwnedByPlayer: 0
   canTouchEnemy: 0
   ammoNumber: 30
   fireRate: 0.5
-  displayName: Weapon
+  displayName: Shotgun
   attackSound: {fileID: 8300000, guid: 8a7150a27201b41f4a7bbd616c8a042b, type: 3}
 --- !u!212 &212791941337722802
 SpriteRenderer:

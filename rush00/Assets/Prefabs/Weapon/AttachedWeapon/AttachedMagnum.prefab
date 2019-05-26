@@ -136,12 +136,13 @@ MonoBehaviour:
   bullet: {fileID: 1925379010471088, guid: 3b971ae3a98f04df386252e5acadfd0b, type: 2}
   groundWeapon: {fileID: 1507460994923126, guid: 475c4e03d9f8543c7a19a7f649504309,
     type: 2}
+  isUnlimited: 0
   isMeleeWeapon: 0
   isOwnedByPlayer: 0
   canTouchEnemy: 0
   ammoNumber: 30
   fireRate: 0.6
-  displayName: Weapon
+  displayName: Magnum
   attackSound: {fileID: 8300000, guid: 7db6db13cd0db47f8a7ec51faf507fe1, type: 3}
 --- !u!212 &212512227557088672
 SpriteRenderer:
