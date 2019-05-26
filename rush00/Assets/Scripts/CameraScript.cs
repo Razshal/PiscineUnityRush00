@@ -7,8 +7,6 @@ public class CameraScript : MonoBehaviour
     public GameObject player;
     public Texture2D texture;
     public AudioClip[] musics;
-    public AudioClip looseSound;
-    public AudioClip winSound;
     private AudioSource audioSource;
     private AudioClip actualMusic;
 
@@ -25,18 +23,6 @@ public class CameraScript : MonoBehaviour
             audioSource.clip = clip;
             audioSource.Play();
         }
-    }
-
-    public void LooseSound()
-    {
-        audioSource.loop = false;
-        PlaySound(looseSound);
-    }
-
-    public void WinSound()
-    {
-        audioSource.loop = false;
-        PlaySound(winSound);
     }
 
     private void Start()

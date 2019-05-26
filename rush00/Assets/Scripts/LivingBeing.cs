@@ -15,6 +15,7 @@ public class LivingBeing : MonoBehaviour {
 	public bool alive = true;
 	public float movementSpeed = 0.2f;
     protected float rotationRadians;
+    public static int enemyCount = 0;
 
 
     public enum State
@@ -37,18 +38,21 @@ public class LivingBeing : MonoBehaviour {
     {
         if (alive)
         {
-            Debug.Log(name + " dies");
             alive = false;
             PlaySound(deathSound);
             if (gameObject.CompareTag("Player"))
             {
-				GameObject instantiatedMenu;
+                GameObject instantiatedMenu;
 
                 instantiatedMenu = Instantiate(looseMenu);
                 instantiatedMenu.GetComponent<Canvas>().worldCamera = Camera.main;
                 instantiatedMenu.SetActive(true);
-                Camera.main.GetComponent<CameraScript>().LooseSound();
             }
+            else
+                enemyCount--;
+
+            if (enemyCount <= 0)
+                PlayerScript.Player().GetComponent<PlayerScript>().Win();
         }
     }
 
@@ -65,6 +69,8 @@ public class LivingBeing : MonoBehaviour {
         bodyContainer = gameObject.transform.GetChild(0).gameObject;
         weaponContainer = bodyContainer.transform.Find("WeaponContainer").gameObject;
         audioSource = gameObject.GetComponent<AudioSource>();
+        if (gameObject.CompareTag("Enemy"))
+            enemyCount++;
     }
 
     protected void FixedUpdate()

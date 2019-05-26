@@ -7,6 +7,8 @@ public class PlayerScript : LivingBeing
     private WeaponScript weaponScript;
     private GameObject lastCollidedWeapon;
     public AudioClip pickupWeaponSound;
+    public GameObject winMenu;
+
 
     public static GameObject Player()
     {
@@ -65,7 +67,11 @@ public class PlayerScript : LivingBeing
 
     public void Win()
     {
-        Debug.Log("Player win");
+        GameObject instantiatedMenu;
+
+        instantiatedMenu = Instantiate(winMenu);
+        instantiatedMenu.GetComponent<Canvas>().worldCamera = Camera.main;
+        instantiatedMenu.SetActive(true);
     }
 
 	new void Start()
