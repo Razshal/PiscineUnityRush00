@@ -10,10 +10,15 @@ public class PlayerScript : LivingBeing
     public AudioClip pickupWeaponSound;
     public GameObject winMenu;
 
-
     public static GameObject Player()
     {
         return GameObject.FindWithTag("Player");
+    }
+
+    public void DeclareEnemyDeath(GameObject obj)
+    {
+        if (weaponScript)
+            weaponScript.listeningEnemies.Remove(obj);
     }
 
     private void PickupWeapon(GameObject groundWeapon)

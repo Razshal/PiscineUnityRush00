@@ -53,10 +53,7 @@ public class LivingBeing : MonoBehaviour {
             else 
             {
                 enemyCount--;
-                player.GetComponent<PlayerScript>()
-                      .weaponScript
-                      .listeningEnemies
-                      .Remove(gameObject);
+                player.GetComponent<PlayerScript>().DeclareEnemyDeath(gameObject);
                 Destroy(gameObject, 5);
             }
 
