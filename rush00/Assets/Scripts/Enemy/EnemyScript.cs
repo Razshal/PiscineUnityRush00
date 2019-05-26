@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyScript : LivingBeing {
 	public EnemySight Sight;
 	public bool	patrol = false;
+
 	private GameObject Player;
 	private float distance = 0;
     private WeaponScript weaponScript;
@@ -12,11 +13,13 @@ public class EnemyScript : LivingBeing {
     private GameObject ActualPath;
     private List<Vector3> PatrolCheckpoints = new List<Vector3>();
     private Vector3 NextPatrolCheckpoints;
+	private PlayerScript PlayerScript;
 
 
 	new void Start() {
 		base.Start();
 		Player = GameObject.Find("Player");
+		PlayerScript = Player.GetComponent<PlayerScript>();
         weaponScript = attachedWeapon.GetComponent<WeaponScript>();
 		checkpoints = GameObject.FindGameObjectsWithTag("CheckPoint");
 	}
@@ -76,7 +79,7 @@ public class EnemyScript : LivingBeing {
 
 	new void Update() {
 		base.Update();
-		if (alive && Sight.PlayerDetected) {
+		if (alive && Sight.PlayerDetected && PlayerScript.alive) {
 			PatrolCheckpoints.Clear();
 			RotateToPos(Player.transform.position);
 			distance = Vector3.Distance(Player.transform.position, transform.position);

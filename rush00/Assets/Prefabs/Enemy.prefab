@@ -219,7 +219,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1271022227782238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.87, y: 13.5, z: 0}
+  m_LocalPosition: {x: -8.6207485, y: 17.089972, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4451653161043800}
@@ -272,8 +272,10 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.123669624, y: 10.590978}
       - {x: -3.1362443, y: 10.044119}
+      - {x: -2.2326584, y: 0.7177906}
       - {x: -0.23870873, y: -0.7810911}
       - {x: 0.19681942, y: -0.78109074}
+      - {x: 2.0314474, y: 0.4459648}
       - {x: 3.8249078, y: 10.001232}
 --- !u!61 &61199392272868322
 BoxCollider2D:
@@ -491,12 +493,10 @@ MonoBehaviour:
   attachedWeapon: {fileID: 1138257710318568}
   looseMenu: {fileID: 0}
   legs: {fileID: 95581503453029110}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: ee5d9085bdea946249671138763e1bf7, type: 3}
   alive: 1
   movementSpeed: 0.2
   rigidbody2D: {fileID: 0}
-  deathAnimation: 0
-  throwForce: 5000
   state: 0
   Sight: {fileID: 114268188676002944}
   patrol: 1

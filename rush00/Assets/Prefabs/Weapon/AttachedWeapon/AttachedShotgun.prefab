@@ -49,15 +49,15 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1237029079400758}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 3
 --- !u!82 &82063812749059928
 AudioSource:
   m_ObjectHideFlags: 1
@@ -75,7 +75,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -157,7 +157,7 @@ MonoBehaviour:
   isMeleeWeapon: 0
   isOwnedByPlayer: 0
   canTouchEnemy: 0
-  ammoNumber: 30
+  ammoNumber: 20
   fireRate: 0.5
   displayName: Shotgun
   attackSound: {fileID: 8300000, guid: 8a7150a27201b41f4a7bbd616c8a042b, type: 3}

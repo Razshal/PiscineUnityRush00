@@ -49,15 +49,15 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347637887101842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 3
 --- !u!82 &82302487021456824
 AudioSource:
   m_ObjectHideFlags: 1
@@ -75,7 +75,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -157,7 +157,7 @@ MonoBehaviour:
   isMeleeWeapon: 0
   isOwnedByPlayer: 0
   canTouchEnemy: 0
-  ammoNumber: 100
+  ammoNumber: 50
   fireRate: 0.1
   displayName: Sub machine gun
   attackSound: {fileID: 8300000, guid: 2a66bd67ce9c148d9948c5b4a1e85970, type: 3}

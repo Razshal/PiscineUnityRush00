@@ -16,7 +16,6 @@ public class LivingBeing : MonoBehaviour {
 	public bool alive = true;
 	public float movementSpeed = 0.2f;
     protected float rotationRadians;
-    public static int enemyCount = 0;
     new public Rigidbody2D rigidbody2D;
 
     public enum State
@@ -52,13 +51,13 @@ public class LivingBeing : MonoBehaviour {
             }
             else 
             {
-                enemyCount--;
                 player.GetComponent<PlayerScript>().DeclareEnemyDeath(gameObject);
                 Destroy(gameObject, 5);
             }
 
-            if (enemyCount <= 0)
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length - 1 <= 0)
                 PlayerScript.Player().GetComponent<PlayerScript>().Win();
+            Debug.Log(GameObject.FindGameObjectsWithTag("Enemy").Length);
         }
     }
 
@@ -77,8 +76,6 @@ public class LivingBeing : MonoBehaviour {
         bodyContainer = gameObject.transform.GetChild(0).gameObject;
         weaponContainer = bodyContainer.transform.Find("WeaponContainer").gameObject;
         audioSource = gameObject.GetComponent<AudioSource>();
-        if (gameObject.CompareTag("Enemy"))
-            enemyCount++;
     }
 
     protected void FixedUpdate()

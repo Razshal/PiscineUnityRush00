@@ -25,7 +25,7 @@ public class WeaponScript : MonoBehaviour {
 
 	private void Start()
 	{
-        gameObject.layer = LayerMask.NameToLayer(LayerName());
+        gameObject.layer = LayerMask.NameToLayer("Default");
         audioSource = gameObject.GetComponent<AudioSource>();
         if (isMeleeWeapon)
             wooshSprite = transform.GetChild(0).gameObject;
@@ -62,7 +62,10 @@ public class WeaponScript : MonoBehaviour {
                 if (listeningEnemies.Count > 0)
                 {
                     foreach (GameObject enemy in listeningEnemies)
-                        enemy.GetComponent<EnemyScript>().Sight.PlayerDetected = true;
+                    {
+                        if (enemy)
+                            enemy.GetComponent<EnemyScript>().Sight.PlayerDetected = true;
+                    }
                 }
 
             }
