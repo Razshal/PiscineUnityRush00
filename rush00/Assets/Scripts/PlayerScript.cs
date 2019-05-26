@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerScript : LivingBeing
 {
     private WeaponScript weaponScript;
+    private GameObject lastCollidedWeapon;
+    public AudioClip pickupWeaponSound;
 
     private void PickupWeapon(GameObject groundWeapon)
     {
@@ -16,28 +18,47 @@ public class PlayerScript : LivingBeing
         weaponScript = attachedWeapon.GetComponent<WeaponScript>();
         weaponScript.isOwnedByPlayer = true;
         Destroy(groundWeapon);
+        PlaySound(pickupWeaponSound);
     }
 
     private void ThrowWeapon()
     {
-        Instantiate(weaponScript.groundWeapon,
+        GameObject tempweapon = Instantiate(weaponScript.groundWeapon,
                     attachedWeapon.transform.position,
-                    attachedWeapon.transform.rotation)
-            .GetComponent<GroundWeaponScript>()
+                                             attachedWeapon.transform.rotation);
+        tempweapon.GetComponent<GroundWeaponScript>()
             .hasBeenThrown = true;
         Destroy(attachedWeapon);
         attachedWeapon = null;
         weaponScript = null;
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private bool IsPickableWeapon(GameObject obj)
     {
-        // Pickup Weapon
-        if (Input.GetKeyDown(KeyCode.E) && !attachedWeapon && other.gameObject.tag == "Weapon")
-            PickupWeapon(other.gameObject);
+        return !attachedWeapon && obj.tag == "Weapon";
     }
 
-    new void Start()
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+        if (!attachedWeapon && collision.gameObject.tag == "Weapon")
+            lastCollidedWeapon = collision.gameObject;
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+        if (!attachedWeapon && collision.gameObject.tag == "Weapon" 
+            && collision.gameObject == lastCollidedWeapon)
+            lastCollidedWeapon = null;
+	}
+
+	private void OnTriggerStay2D(Collider2D other)
+    {
+        // Pickup Weapon
+        if (!attachedWeapon && other.gameObject.tag == "Weapon")
+            lastCollidedWeapon = other.gameObject;
+    }
+
+	new void Start()
     {
         // Call parent start
         base.Start();
@@ -73,5 +94,8 @@ public class PlayerScript : LivingBeing
         // Throw weapon
         if (Input.GetMouseButtonDown(1) && attachedWeapon)
             ThrowWeapon();
+
+        if (Input.GetKeyDown(KeyCode.E) && lastCollidedWeapon)
+            PickupWeapon(lastCollidedWeapon);
     }
 }

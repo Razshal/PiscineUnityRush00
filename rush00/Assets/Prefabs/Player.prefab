@@ -280,11 +280,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb260568595ea481f95630a1948760a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alive: 1
-  weapon: {fileID: 0}
+  attachedWeapon: {fileID: 0}
   legs: {fileID: 95983360920063868}
+  deathSound: {fileID: 0}
+  alive: 1
   movementSpeed: 0.2
   state: 0
+  pickupWeaponSound: {fileID: 8300000, guid: 524ddaeab25d84e5db2258e397f9f900, type: 3}
 --- !u!212 &212509720518990374
 SpriteRenderer:
   m_ObjectHideFlags: 1

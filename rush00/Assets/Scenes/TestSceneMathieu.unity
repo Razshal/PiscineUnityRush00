@@ -122,11 +122,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4278658204149214, guid: 43db13676e86a4092b3ebea920ece545, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.12
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 4278658204149214, guid: 43db13676e86a4092b3ebea920ece545, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.34
+      value: -2.59
       objectReference: {fileID: 0}
     - target: {fileID: 4278658204149214, guid: 43db13676e86a4092b3ebea920ece545, type: 2}
       propertyPath: m_LocalPosition.z
@@ -195,6 +195,11 @@ Prefab:
       propertyPath: m_Radius
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 114452942501112538, guid: 43db13676e86a4092b3ebea920ece545,
+        type: 2}
+      propertyPath: pickupWeapon
+      value: 
+      objectReference: {fileID: 8300000, guid: bd5112458d23d48faa52fe82499275ed, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43db13676e86a4092b3ebea920ece545, type: 2}
   m_IsPrefabParent: 0
@@ -337,6 +342,16 @@ Prefab:
         type: 2}
       propertyPath: m_Mass
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 233803377184827018, guid: d15101c043c024d8abedee485137db76,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 3.494001
+      objectReference: {fileID: 0}
+    - target: {fileID: 233803377184827018, guid: d15101c043c024d8abedee485137db76,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: -1.4722722
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d15101c043c024d8abedee485137db76, type: 2}
@@ -608,9 +623,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c09861563aa547a396e77c8c4c30297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alive: 1
   attachedWeapon: {fileID: 0}
   legs: {fileID: 1334340727}
+  deathSound: {fileID: 0}
+  alive: 1
   movementSpeed: 0.2
   state: 0
 --- !u!1001 &1762510165

@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class LivingBeing : MonoBehaviour {
 
-    public bool alive = true;
-    public GameObject attachedWeapon;
+	public GameObject attachedWeapon;
+	protected GameObject weaponContainer;
+	protected GameObject bodyContainer;
     public Animator legs;
-	public float movementSpeed = 0.2f;
-    protected GameObject weaponContainer;
-    protected GameObject bodyContainer;
+    protected AudioSource audioSource;
+    public AudioClip deathSound;
     protected Vector3 movement;
+	public bool alive = true;
+	public float movementSpeed = 0.2f;
     protected float rotationRadians;
+
 
     public enum State
     {
@@ -19,6 +22,15 @@ public class LivingBeing : MonoBehaviour {
         MOVING
     }
     public State state = State.STAY;
+
+    protected void PlaySound(AudioClip clip)
+    {
+        if (audioSource)
+        {
+			audioSource.clip = clip;
+            audioSource.Play();
+        }
+    }
 
     public void Die()
     {
@@ -39,6 +51,7 @@ public class LivingBeing : MonoBehaviour {
     {
         bodyContainer = gameObject.transform.GetChild(0).gameObject;
         weaponContainer = bodyContainer.transform.Find("WeaponContainer").gameObject;
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     protected void FixedUpdate()
