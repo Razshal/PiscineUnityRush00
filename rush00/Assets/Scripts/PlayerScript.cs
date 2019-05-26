@@ -67,11 +67,15 @@ public class PlayerScript : LivingBeing
 
     public void Win()
     {
-        GameObject instantiatedMenu;
+        if (alive)
+        {
+            GameObject instantiatedMenu;
 
-        instantiatedMenu = Instantiate(winMenu);
-        instantiatedMenu.GetComponent<Canvas>().worldCamera = Camera.main;
-        instantiatedMenu.SetActive(true);
+            instantiatedMenu = Instantiate(winMenu);
+            instantiatedMenu.GetComponent<Canvas>().worldCamera = Camera.main;
+            instantiatedMenu.SetActive(true);
+            GameObject.Find("HUD").SetActive(false);
+        }
     }
 
 	new void Start()
@@ -85,33 +89,40 @@ public class PlayerScript : LivingBeing
 
     new void FixedUpdate()
     {
-        // Call parent fixed update
-        base.FixedUpdate();
+        if (alive)
+        {
+            // Call parent fixed update
+            base.FixedUpdate();
 
-        // Player input
-        movement = new Vector3(Input.GetAxis("Horizontal") * movementSpeed,
-                               Input.GetAxis("Vertical") * movementSpeed,
-                               0);
-        gameObject.transform.Translate(movement);
+            // Player input
+            movement = new Vector3(Input.GetAxis("Horizontal") * movementSpeed,
+                                   Input.GetAxis("Vertical") * movementSpeed,
+                                   0);
+            gameObject.transform.Translate(movement);
+        }
     }
 
     new void Update()
     {
-        // Call parent update
-        base.Update();
+        if (alive)
+        {
+            // Call parent update
+            base.Update();
 
-        // Look at the mouse direction
-        RotateToPos(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            // Look at the mouse direction
+            RotateToPos(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
-        // Attack !
-        if (Input.GetMouseButton(0) && attachedWeapon)
-            weaponScript.Attack();
+            // Attack !
+            if (Input.GetMouseButton(0) && attachedWeapon)
+                weaponScript.Attack();
 
-        // Throw weapon
-        if (Input.GetMouseButtonDown(1) && attachedWeapon)
-            ThrowWeapon();
+            // Throw weapon
+            if (Input.GetMouseButtonDown(1) && attachedWeapon)
+                ThrowWeapon();
 
-        if (Input.GetKeyDown(KeyCode.E) && lastCollidedWeapon)
-            PickupWeapon(lastCollidedWeapon);
+            // Pickup weapon
+            if (Input.GetKeyDown(KeyCode.E) && lastCollidedWeapon)
+                PickupWeapon(lastCollidedWeapon);
+        }
     }
 }

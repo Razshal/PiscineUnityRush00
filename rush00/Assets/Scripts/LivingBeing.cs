@@ -47,6 +47,7 @@ public class LivingBeing : MonoBehaviour {
                 instantiatedMenu = Instantiate(looseMenu);
                 instantiatedMenu.GetComponent<Canvas>().worldCamera = Camera.main;
                 instantiatedMenu.SetActive(true);
+                GameObject.Find("HUD").SetActive(false);
             }
             else
                 enemyCount--;

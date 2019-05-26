@@ -28,7 +28,8 @@ public class CameraScript : MonoBehaviour
     private void Start()
     {
         if (texture)
-            Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
+			Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
+        
         audioSource = gameObject.GetComponent<AudioSource>();
         if (musics.Length > 0)
         {

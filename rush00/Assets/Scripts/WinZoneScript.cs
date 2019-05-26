@@ -7,6 +7,10 @@ public class WinZoneScript : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
         if (collision.gameObject.CompareTag("Player"))
-            collision.gameObject.GetComponent<PlayerScript>().Win();
+        {
+            PlayerScript player = collision.gameObject.GetComponent<PlayerScript>();
+            if (player.alive)
+                player.Win();
+        }
 	}
 }
