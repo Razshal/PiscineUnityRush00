@@ -38,7 +38,7 @@ public class GroundWeaponScript : MonoBehaviour {
         }
         if (!rigidbody2D.velocity.Equals(Vector2.zero))
         {
-			rigidbody2D.velocity *= 0.8f;
+            rigidbody2D.velocity *= 0.8f;
             spriteContainer.transform.Rotate(new Vector3(0, 0, 10 * rigidbody2D.velocity.y));
             if (enemyColliding && attachedWeapon.GetComponent<WeaponScript>().isMeleeWeapon)
             {

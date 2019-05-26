@@ -7,6 +7,8 @@ public class WeaponScript : MonoBehaviour {
     public GameObject groundWeapon;
     private GameObject lastShootedBullet;
     private GameObject collidingEnemy;
+    private GameObject wooshSprite;
+    private float wooshTimer;
     public List<GameObject> listeningEnemies = new List<GameObject>();
 
 
@@ -24,6 +26,8 @@ public class WeaponScript : MonoBehaviour {
 	private void Start()
 	{
         audioSource = gameObject.GetComponent<AudioSource>();
+        if (isMeleeWeapon)
+            wooshSprite = transform.GetChild(0).gameObject;
 	}
 
 	private string LayerName()
@@ -69,8 +73,11 @@ public class WeaponScript : MonoBehaviour {
             }
 
             if (isMeleeWeapon)
+            {
                 audioSource.Play();
-
+                wooshSprite.SetActive(true);
+                wooshTimer = 0.1f;
+            }
         }
     }
 
@@ -105,5 +112,9 @@ public class WeaponScript : MonoBehaviour {
     {
         if (coolDown > 0)
             coolDown -= Time.deltaTime;
+        if (wooshTimer > 0)
+            wooshTimer -= Time.deltaTime;
+        else if (wooshSprite)
+            wooshSprite.SetActive(false);
     }
 }

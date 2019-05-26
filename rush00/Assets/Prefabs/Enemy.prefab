@@ -219,7 +219,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1271022227782238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.18, y: -0.59, z: 0}
+  m_LocalPosition: {x: 6.87, y: 13.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4451653161043800}
@@ -270,11 +270,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.013963401, y: 5.133068}
-      - {x: -1.9843237, y: 4.8330507}
+    - - {x: 0.123669624, y: 10.590978}
+      - {x: -3.1362443, y: 10.044119}
       - {x: -0.23870873, y: -0.7810911}
       - {x: 0.19681942, y: -0.78109074}
-      - {x: 2.1518803, y: 4.7353096}
+      - {x: 3.8249078, y: 10.001232}
 --- !u!61 &61199392272868322
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -494,8 +494,12 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   alive: 1
   movementSpeed: 0.2
+  rigidbody2D: {fileID: 0}
+  deathAnimation: 0
+  throwForce: 5000
   state: 0
   Sight: {fileID: 114268188676002944}
+  patrol: 1
 --- !u!114 &114200890423733060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -510,6 +514,7 @@ MonoBehaviour:
   bullet: {fileID: 1066116559050230, guid: 82ea67f5e62f94455bff29a907465b3e, type: 2}
   groundWeapon: {fileID: 1569403525595938, guid: 4638366e44c4e40f1bbf5e650ebaa520,
     type: 2}
+  listeningEnemies: []
   isUnlimited: 1
   isMeleeWeapon: 0
   isOwnedByPlayer: 0
