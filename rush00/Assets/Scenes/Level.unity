@@ -125,6 +125,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114155475336448768, guid: ae6b9ea048a5a4bb985b728525d17c3a,
+        type: 2}
+      propertyPath: musics.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4502753121793830, guid: ae6b9ea048a5a4bb985b728525d17c3a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -177,6 +182,16 @@ Prefab:
       propertyPath: m_BackGroundColor.b
       value: 0.4044118
       objectReference: {fileID: 0}
+    - target: {fileID: 114155475336448768, guid: ae6b9ea048a5a4bb985b728525d17c3a,
+        type: 2}
+      propertyPath: musics.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f6fa78bf8d404b0286af620885de7fa, type: 3}
+    - target: {fileID: 114155475336448768, guid: ae6b9ea048a5a4bb985b728525d17c3a,
+        type: 2}
+      propertyPath: musics.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7728590c06b1247a79334c5cde053938, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae6b9ea048a5a4bb985b728525d17c3a, type: 2}
   m_IsPrefabParent: 0
